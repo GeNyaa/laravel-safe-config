@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "genyaa/laravel-safe-config",
+    "description": "This is my package laravel-safe-config",
     "keywords": [
-        ":vendor_name",
+        "genyaa",
         "laravel",
-        ":package_slug"
+        "laravel-safe-config"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/genyaa/laravel-safe-config",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Auke de Jong",
+            "email": "contact@genyaa.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\": "src/",
+            "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\LaravelSafeConfigServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelSafeConfig": "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\Facades\\LaravelSafeConfig"
             }
         }
     },

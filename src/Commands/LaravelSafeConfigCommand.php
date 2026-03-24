@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace GeNyaa\LaravelSafeConfig\LaravelSafeConfig\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelSafeConfigCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-safe-config';
 
     public $description = 'My command';
 
