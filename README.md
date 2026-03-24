@@ -1,19 +1,11 @@
-# This is my package laravel-safe-config
+# Laravel Safe Config
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/genyaa/laravel-safe-config.svg?style=flat-square)](https://packagist.org/packages/genyaa/laravel-safe-config)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/genyaa/laravel-safe-config/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/genyaa/laravel-safe-config/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/genyaa/laravel-safe-config/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/genyaa/laravel-safe-config/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/genyaa/laravel-safe-config.svg?style=flat-square)](https://packagist.org/packages/genyaa/laravel-safe-config)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-safe-config.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-safe-config)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+`genyaa/laravel-safe-config` overrides Laravel's default `config:cache` command so selected environment variables are not being written as to file values into the cached config file.
 
 ## Installation
 
@@ -23,38 +15,50 @@ You can install the package via composer:
 composer require genyaa/laravel-safe-config
 ```
 
-You can publish and run the migrations with:
+Create a `safe-config.php` file in the root of your Laravel project:
 
 ```bash
-php artisan vendor:publish --tag="laravel-safe-config-migrations"
-php artisan migrate
+php artisan safe-config:install
 ```
 
-You can publish the config file with:
+If the file already exists and you want to replace it, use:
 
 ```bash
-php artisan vendor:publish --tag="laravel-safe-config-config"
+php artisan safe-config:install --force
 ```
 
-This is the contents of the published config file:
+This file should return a list of environment variable names that must remain secret after config caching:
 
 ```php
 return [
+	'APP_KEY',
+	'DB_PASSWORD',
+	// ...
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-safe-config-views"
-```
 
 ## Usage
 
-```php
-$laravelSafeConfig = new GeNyaa\LaravelSafeConfig\LaravelSafeConfig();
-echo $laravelSafeConfig->echoPhrase('Hello, GeNyaa\LaravelSafeConfig!');
+Once the package service provider is loaded, Laravel resolves `config:cache` through this package.
+
+```bash
+php artisan config:cache
 ```
+
+Any environment variable listed in your root `safe-config.php` file will be emitted into the cached config file as a runtime `getenv()` lookup.
+
+For example:
+
+```php
+return [
+	'APP_KEY',
+	'DB_PASSWORD',
+	// ...
+];
+```
+
+During `config:cache`, the package automatically discovers which config values depend on each listed environment variable by probing fresh configuration snapshots. Those cached config values are then not permanently frozen at cache-build time. When the cache file is loaded, Laravel will read them through `getenv()`, and if `getenv()` returns `false`, the cache falls back to the value that existed when `config:cache` was run.
 
 ## Testing
 
@@ -66,18 +70,11 @@ composer test
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
-- [Auke de Jong](https://github.com/GeNyaa)
-- [All Contributors](../../contributors)
+<a href="https://github.com/GeNyaa/laravel-safe-config/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=GeNyaa/laravel-safe-config" alt="Contributors" />
+</a>
 
 ## License
 

@@ -1,6 +1,6 @@
 {
     "name": "genyaa/laravel-safe-config",
-    "description": "This is my package laravel-safe-config",
+    "description": "Keep selected Laravel config values dynamic after config:cache",
     "keywords": [
         "genyaa",
         "laravel",
@@ -35,14 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\": "src/",
-            "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\Database\\Factories\\": "database/factories/"
+            "GeNyaa\\LaravelSafeConfig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/"
+            "GeNyaa\\LaravelSafeConfig\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -63,11 +61,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\LaravelSafeConfigServiceProvider"
-            ],
-            "aliases": {
-                "LaravelSafeConfig": "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfig\\Facades\\LaravelSafeConfig"
-            }
+                "GeNyaa\\LaravelSafeConfig\\LaravelSafeConfigServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

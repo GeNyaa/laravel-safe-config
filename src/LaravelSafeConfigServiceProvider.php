@@ -1,8 +1,11 @@
 <?php
 
-namespace GeNyaa\LaravelSafeConfig\LaravelSafeConfig;
+namespace GeNyaa\LaravelSafeConfig;
 
-use GeNyaa\LaravelSafeConfig\LaravelSafeConfig\Commands\LaravelSafeConfigCommand;
+
+use GeNyaa\LaravelSafeConfig\Commands\InstallSafeConfigCommand;
+use GeNyaa\LaravelSafeConfig\Commands\SafeConfigCacheCommand;
+use Illuminate\Foundation\Console\ConfigCacheCommand as LaravelConfigCacheCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -10,16 +13,15 @@ class LaravelSafeConfigServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('laravel-safe-config')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel_safe_config_table')
-            ->hasCommand(LaravelSafeConfigCommand::class);
+            ->hasCommand(InstallSafeConfigCommand::class);
+    }
+
+    public function packageRegistered(): void
+    {
+        $this->app->extend(LaravelConfigCacheCommand::class, function ($command, $app) {
+            return new SafeConfigCacheCommand($app['files']);
+        });
     }
 }
