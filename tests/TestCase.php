@@ -2,9 +2,9 @@
 
 namespace GeNyaa\LaravelSafeConfig\LaravelSafeConfig\Tests;
 
+use GeNyaa\LaravelSafeConfig\LaravelSafeConfig\LaravelSafeConfigServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use GeNyaa\LaravelSafeConfig\LaravelSafeConfig\LaravelSafeConfigServiceProvider;
 
 class TestCase extends Orchestra
 {

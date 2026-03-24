@@ -2,9 +2,9 @@
 
 namespace GeNyaa\LaravelSafeConfig\LaravelSafeConfig;
 
+use GeNyaa\LaravelSafeConfig\LaravelSafeConfig\Commands\LaravelSafeConfigCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use GeNyaa\LaravelSafeConfig\LaravelSafeConfig\Commands\LaravelSafeConfigCommand;
 
 class LaravelSafeConfigServiceProvider extends PackageServiceProvider
 {
