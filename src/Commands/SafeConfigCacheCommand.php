@@ -250,4 +250,3 @@ class SafeConfigCacheCommand extends LaravelConfigCacheCommand
         );
     }
 }
-

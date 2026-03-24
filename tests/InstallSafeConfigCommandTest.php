@@ -47,4 +47,3 @@ it('overwrites an existing safe-config file when forced', function () {
         ->toContain("// 'APP_KEY',")
         ->not->toContain("'APP_URL'");
 });
-

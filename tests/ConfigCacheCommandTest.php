@@ -127,6 +127,3 @@ it('discovers config locations for listed env variables even when they are unset
     expect($runtimeConfig['app']['name'])
         ->toBe('Runtime application name');
 });
-
-
-

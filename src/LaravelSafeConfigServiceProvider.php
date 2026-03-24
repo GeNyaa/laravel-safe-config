@@ -2,7 +2,6 @@
 
 namespace GeNyaa\LaravelSafeConfig;
 
-
 use GeNyaa\LaravelSafeConfig\Commands\InstallSafeConfigCommand;
 use GeNyaa\LaravelSafeConfig\Commands\SafeConfigCacheCommand;
 use Illuminate\Foundation\Console\ConfigCacheCommand as LaravelConfigCacheCommand;
